@@ -90,9 +90,12 @@ public class MainActivity extends Activity {
      */
     public void registerDevice(View view) {
 
+		TextView buttonText = (TextView) findViewById(R.id.button_text);
+        buttonText.setClickable(false);
+	
         // Grabs push client sdk instance
         push = MFPPush.getInstance();
-
+		
         TextView errorText = (TextView) findViewById(R.id.error_text);
         errorText.setText("Registering for notifications");
 
