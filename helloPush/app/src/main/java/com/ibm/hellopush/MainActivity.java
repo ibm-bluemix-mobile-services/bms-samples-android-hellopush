@@ -37,8 +37,8 @@ public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private MFPPush push;
-    private MFPPushNotificationListener notificationListener;
+    private MFPPush push; // Push client
+    private MFPPushNotificationListener notificationListener; // Notification listener to handle a push sent to the phone
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class MainActivity extends Activity {
         TextView buttonText = (TextView) findViewById(R.id.button_text);
 
         try {
-            //initialize SDK with IBM Bluemix application ID and route
-            //TODO: Please replace <APPLICATION_ROUTE> with a valid ApplicationRoute and <APPLICATION_ID> with a valid ApplicationId
+            // initialize SDK with IBM Bluemix application ID and route
+            // TODO: Please replace <APPLICATION_ROUTE> with a valid ApplicationRoute and <APPLICATION_ID> with a valid ApplicationId
             BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>");
         }
         catch (MalformedURLException mue) {
@@ -57,8 +57,10 @@ public class MainActivity extends Activity {
             buttonText.setClickable(false);
         }
 
+        // Initialize Push client
         MFPPush.getInstance().initialize(this);
 
+        // Create notification listener and enable pop up notification when a message is received
         notificationListener = new MFPPushNotificationListener() {
             @Override
             public void onReceive(final MFPSimplePushNotification message) {
@@ -79,25 +81,16 @@ public class MainActivity extends Activity {
         };
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (push != null) {
-            push.listen(notificationListener);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (push != null) {
-            push.hold();
-        }
-    }
-
+    /**
+     * Called when the register device button is pressed.
+     * Attempts to register the device with your push service on Bluemix.
+     * If successful, the push client sdk begins listening to the notification listener.
+     *
+     * @param view the button pressed
+     */
     public void registerDevice(View view) {
 
+        // Grabs push client sdk instance
         push = MFPPush.getInstance();
 
         TextView errorText = (TextView) findViewById(R.id.error_text);
@@ -105,6 +98,7 @@ public class MainActivity extends Activity {
 
         Log.i(TAG, "Registering for notifications");
 
+        // Creates response listener to handle the response when a device is registered.
         MFPPushResponseListener registrationResponselistener = new MFPPushResponseListener<String>() {
             @Override
             public void onSuccess(String s) {
@@ -117,13 +111,39 @@ public class MainActivity extends Activity {
             public void onFailure(MFPPushException e) {
                 setStatus("Error registering for push notifications: " + e.getErrorMessage(), false);
                 Log.e(TAG, e.getErrorMessage());
+                push = null;
             }
         };
 
+        // Attempt to register device using response listener created above
         push.register(registrationResponselistener);
 
         }
 
+    // If the device has been registered previously, hold push notifications when the app is paused
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (push != null) {
+            push.hold();
+        }
+    }
+
+    // If the device has been registered previously, ensure the client sdk is still using the notification listener from onCreate when app is resumed
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (push != null) {
+            push.listen(notificationListener);
+        }
+    }
+
+    /**
+     * Manipulates text fields in the UI based on initialization and registration events
+     * @param messageText
+     * @param wasSuccessful
+     */
     private void setStatus(final String messageText, boolean wasSuccessful){
         final TextView errorText = (TextView) findViewById(R.id.error_text);
         final TextView topText = (TextView) findViewById(R.id.top_text);

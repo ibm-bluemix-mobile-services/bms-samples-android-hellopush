@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ibm.hellopush" >
 
+    <!-- Necessary Permissions for Receiving Push Notifications-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.ibm.clientsdk.android.app.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -24,6 +25,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!--Notification Intent -->
             <intent-filter>
                 <action android:name="com.ibm.mobilefirstplatform.clientsdk.android.app.MFPPushNotification" />
 
@@ -48,7 +50,6 @@
                 <category android:name="com.ibm.mobilefirstplatform.clientsdk.android.app" />
             </intent-filter>
         </receiver>
-        <!-- Push Settings End -->
     </application>
 
 </manifest>
