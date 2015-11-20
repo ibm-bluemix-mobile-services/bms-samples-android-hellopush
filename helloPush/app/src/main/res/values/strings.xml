@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Hello Push</string>
+    <string name="action_settings">Settings</string>
+    <string name="RegistrationButton">Register Device</string>
+    <string name="DefaultLabel">Hello Push</string>
+    <string name="hello_world">Hello push!</string>
+</resources>
