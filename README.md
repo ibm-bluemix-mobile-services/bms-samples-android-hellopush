@@ -1,10 +1,10 @@
 # Android HelloPush application for IBM MobileFirst Services on IBM Bluemix
 ---
 ### Create an Android helloPush sample application.
-1. Downloading the helloPush sample.
-2. Configuring the backend for your helloPush application.
-3. Configuring the front end in the helloPush example.
-4. Running the Android app.
+1. [Downloading the helloPush sample](#downloading-the-hellopush-sample).
+2. [Configuring the backend for your helloPush application](#configuring-the-back-end-for-your-hellopush-application).
+3. [Configuring the front end in the helloPush example](#configuring-the-front-end-in-the-hellopush-sample).
+4. [Running the Android app](#running-the-android-app).
 
 ### Before you begin 
 Before you start, make sure you have the following:
