@@ -1,12 +1,12 @@
 # Android HelloPush application for IBM MobileFirst Services on IBM Bluemix
 ---
-### Create an Android HelloPush sample application.
-1. Download the HelloPush sample.
-2. Configuring the backend for your HelloPush application.
-3. Configuring the front end in the HelloPush example.
-4. Run the Android app.
+### Create an Android helloPush sample application.
+1. Downloading the helloPush sample.
+2. Configuring the backend for your helloPush application.
+3. Configuring the front end in the helloPush example.
+4. Running the Android app.
 
-### Before your begin 
+### Before you begin 
 Before you start, make sure you have the following:
 - A [Bluemix](http://bluemix.net) account.
 - Google Cloud Messaging (GCM) credentials.  To obtain your GCM credentials, follow the instructions at  
@@ -14,20 +14,26 @@ https://www.ng.bluemix.net/docs/services/mobilepush/t_push_config_provider_andro
 
 **Note**: You'll need the project number (Sender ID) and API key to configure your credentials on the Bluemix Push Notification Dashboard.
 
-### Download the HelloPush sample
+### Downloading the helloPush sample
 Clone the sample from GitHub using the following command:
 
 git clone https://github.com/ibm-bluemix-mobile-services/bms-samples-android-hellopush
 
-### Configuring the back end for your HelloPush application
-Before you can run the HelloPush application, you must set up an app on Bluemix.  The following procedure shows you how to create a MobileFirst Services Starter application. The Starter application creates a Node.js runtime environment so that you can provide server-side functions, such as resource URIs and static files.  The Cloudant® NoSQL DB, Push Notifications, and Mobile Client Access services are added to the app.
+### Configuring the back end for your helloPush application
+Before you can run the helloPush application, you must set up an app on Bluemix.  The following procedure shows you how to create a MobileFirst Services Starter application. The Starter application creates a Node.js runtime environment so that you can provide server-side functions, such as resource URIs and static files.  The Cloudant® NoSQL DB, Push Notifications, and Mobile Client Access services are added to the app.
 
-1. Create a mobile backend in the Bluemix dashboard.
-2. In the **Boilerplates** section Bluemix catalog, click **MobileFirst Services Starter**.
-3. Enter a name and host for your mobile backend and click Create.
-4. Click **Finish**.
+Create a mobile backend in the Bluemix dashboard:
 
-### Configuring the front end in the HelloPush sample
+1. In the **Boilerplates** section Bluemix catalog, click **MobileFirst Services Starter**.
+2. Enter a name and host for your mobile backend and click Create.
+3. Click **Finish**.
+
+Configure Push Notification Service:
+
+1. In the IBM Push Notifications Dashboard, go to the Configuration tab to configure your Push Notification Service.
+2. Scroll down to the Google Cloud Messaging section. Enter your GCM project credentials, project number (Sender ID) and API key, and click save.
+
+### Configuring the front end in the helloPush sample
 1. In Android Studio, open the helloPush Android project.
 2. Run a Gradle sync (usually starts automatically) to import the required `core` and `push` SDKs. You can view the **build.gradle** file in the following directory:
 
@@ -56,7 +62,7 @@ Java:
         }
 
 
-### Run the Android app
+### Running the Android app
 You can register and receive push notifications on an Android simulator or physical device.
 
 When you run the application, it displays the **Register for Push** button.
