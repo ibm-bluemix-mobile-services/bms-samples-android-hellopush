@@ -64,6 +64,8 @@ Configure Push Notification Service:
         }
 ```
 
+> **Note**: This sample depends on 1.+ version of the Core SDK. This means that the most recent 1.* version will be downloaded automatically. When creating a production applications it is recommended to define the version explicitly (1.0.0 for example) to ensure consistent builds.
+
 ### Running the Android app
 You can register and receive push notifications on an Android simulator or physical device.
 
