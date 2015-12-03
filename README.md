@@ -46,8 +46,7 @@ Configure Push Notification Service:
 4. In the application `onCreate` method, add the corresponding `ApplicationRoute` and `ApplicationID`:
 
 
-Java:
-
+```Java
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +62,7 @@ Java:
         catch (MalformedURLException mue) {
             ....
         }
-
+```
 
 ### Running the Android app
 You can register and receive push notifications on an Android simulator or physical device.
