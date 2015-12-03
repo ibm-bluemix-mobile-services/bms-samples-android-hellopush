@@ -15,12 +15,12 @@ Before you start, make sure you have the following:
 - Google Cloud Messaging (GCM) credentials.  To obtain your GCM credentials, follow the instructions at  
 https://www.ng.bluemix.net/docs/services/mobilepush/t_push_config_provider_android.html
 
-**Note**: You'll need the project number (Sender ID) and API key to configure your credentials on the Bluemix Push Notification Dashboard.
+>**Note**: You'll need the project number (Sender ID) and API key to configure your credentials on the Bluemix Push Notification Dashboard.
 
 ### Download the helloPush sample
 Clone the sample from GitHub using the following command:
 
-git clone https://github.com/ibm-bluemix-mobile-services/bms-samples-android-hellopush
+`git clone https://github.com/ibm-bluemix-mobile-services/bms-samples-android-hellopush`
 
 ### Configure the mobile back end for your helloPush application
 Before you can run the helloPush application, you must set up an app on Bluemix.  The following procedure shows you how to create a MobileFirst Services Starter application. The Starter application creates a Node.js runtime environment so that you can provide server-side functions, such as resource URIs and static files.  The Cloudant® NoSQL DB, Push Notifications, and Mobile Client Access services are added to the app.
