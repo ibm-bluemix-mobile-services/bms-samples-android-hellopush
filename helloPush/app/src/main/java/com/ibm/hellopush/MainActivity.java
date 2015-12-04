@@ -144,8 +144,8 @@ public class MainActivity extends Activity {
 
     /**
      * Manipulates text fields in the UI based on initialization and registration events
-     * @param messageText
-     * @param wasSuccessful
+     * @param messageText String main text view
+     * @param wasSuccessful Boolean dictates top 2 text view texts
      */
     private void setStatus(final String messageText, boolean wasSuccessful){
         final TextView errorText = (TextView) findViewById(R.id.error_text);
