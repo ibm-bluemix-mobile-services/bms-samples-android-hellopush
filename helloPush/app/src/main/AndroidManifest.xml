@@ -27,10 +27,11 @@
             </intent-filter>
             <!--Notification Intent -->
             <intent-filter>
-                <action android:name="com.ibm.mobilefirstplatform.clientsdk.android.app.MFPPushNotification" />
+                <action android:name="com.ibm.hellopush.IBMPushNotification" />
 
-                <category  android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
 
         <!-- Add GCM Intent Service and intent-filters for RECEIVE and REGISTRATION of notifications -->
