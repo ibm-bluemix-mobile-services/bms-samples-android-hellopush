@@ -13,7 +13,7 @@ Use the following steps to configure the helloPush sample for Android:
 Before you start, make sure you have the following:
 - A [Bluemix](http://bluemix.net) account.
 - Google Cloud Messaging (GCM) credentials.  To obtain your GCM credentials, follow the instructions at  
-https://www.ng.bluemix.net/docs/services/mobilepush/t_push_config_provider_android.html
+https://www.bluemix.net/docs/services/mobilepush/t_push_provider_android.html
 
 >**Note**: You'll need the project number (Sender ID) and API key to configure your credentials on the Bluemix Push Notification Dashboard.
 
