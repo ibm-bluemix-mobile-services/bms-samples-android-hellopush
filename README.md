@@ -29,7 +29,8 @@ Create a mobile backend in the Bluemix dashboard:
 
 1. In the **Boilerplates** section Bluemix catalog, click **MobileFirst Services Starter**.
 2. Enter a name and host for your mobile backend and click **Create**.
-3. Click **Finish**.
+3. Once complete, scroll all the way down and select **View App Overview**.
+4. From the **App Overview** page, you see the **Mobile Options** displayed (**Route** and **App GUID**). Be sure to save these, they will be needed later.
 
 Configure Push Notification Service:
 
