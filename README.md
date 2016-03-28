@@ -30,7 +30,7 @@ Create a mobile backend in the Bluemix dashboard:
 1. In the **Boilerplates** section Bluemix catalog, click **MobileFirst Services Starter**.
 2. Enter a name and host for your mobile backend and click **Create**.
 3. Once complete, scroll all the way down and select **View App Overview**.
-4. From the **App Overview** page, you see the **Mobile Options** displayed (**Route** and **App GUID**). Be sure to save these, they will be needed later.
+4. From the **App Overview** page, you will see the **Mobile Options** displayed (**Route** and **App GUID**). Be sure to save these, they will be needed later.
 
 Configure Push Notification Service:
 
@@ -71,6 +71,8 @@ Configure Push Notification Service:
 You can register and receive push notifications on an Android simulator or physical device.
 
 When you run the application, it displays the **Register for Push** button. When you click this button, the application attempts to register the device and application to the Push Notification Service. The app displays an alert showing the registration status (successful or failed).
+
+To send a push notification from the Bluemix dashboard follow [Sending basic push notifications](https://www.bluemix.net/docs/services/mobilepush/t_send_push_notifications.html)
 
 When a push notification is received and the application is in the foreground, an alert is displayed showing the notification's content. The application uses the `ApplicationRoute` and `ApplicationID` specified in the `onCreate` method to connect to the IBM Push Notification Service on Bluemix. The registration status and content is displayed in the logcat console.
 ### License
