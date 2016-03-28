@@ -44,7 +44,7 @@ Configure Push Notification Service:
 	`helloPush\app\build.gradle`
 	
 3. Open the `MainActivity.java` class.
-4. In the application `onCreate` method, add the corresponding `ApplicationRoute` and `ApplicationID`:
+4. In the application `onCreate` method, add the corresponding `ApplicationRoute` and `ApplicationID` (AppGUID) that you saved earlier:
 
 
 ```Java
