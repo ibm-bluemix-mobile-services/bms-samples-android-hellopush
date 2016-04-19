@@ -59,10 +59,7 @@ public class MainActivity extends Activity {
         }
 
         // Initialize Push client
-        MFPPush.getInstance().initialize(getApplicationContext());
-
-        // Grabs push client sdk instance
-        push = MFPPush.getInstance();
+        MFPPush.getInstance().initialize(this);
 
         // Create notification listener and enable pop up notification when a message is received
         notificationListener = new MFPPushNotificationListener() {
@@ -84,7 +81,6 @@ public class MainActivity extends Activity {
             }
         };
 
-        push.listen(notificationListener);
     }
 
     /**
@@ -95,6 +91,9 @@ public class MainActivity extends Activity {
      * @param view the button pressed
      */
     public void registerDevice(View view) {
+
+        // Grabs push client sdk instance
+        push = MFPPush.getInstance();
 
 		TextView buttonText = (TextView) findViewById(R.id.button_text);
         buttonText.setClickable(false);
