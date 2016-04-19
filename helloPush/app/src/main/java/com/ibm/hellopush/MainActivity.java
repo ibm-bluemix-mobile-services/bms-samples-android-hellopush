@@ -59,7 +59,10 @@ public class MainActivity extends Activity {
         }
 
         // Initialize Push client
-        MFPPush.getInstance().initialize(this);
+        MFPPush.getInstance().initialize(getApplicationContext());
+
+        // Grabs push client sdk instance
+        push = MFPPush.getInstance();
 
         // Create notification listener and enable pop up notification when a message is received
         notificationListener = new MFPPushNotificationListener() {
@@ -80,6 +83,8 @@ public class MainActivity extends Activity {
                 });
             }
         };
+
+        push.listen(notificationListener);
     }
 
     /**
@@ -93,12 +98,9 @@ public class MainActivity extends Activity {
 
 		TextView buttonText = (TextView) findViewById(R.id.button_text);
         buttonText.setClickable(false);
-	
-        // Grabs push client sdk instance
-        push = MFPPush.getInstance();
 		
-        TextView errorText = (TextView) findViewById(R.id.error_text);
-        errorText.setText("Registering for notifications");
+        TextView responseText = (TextView) findViewById(R.id.response_text);
+        responseText.setText("Registering for notifications");
 
         Log.i(TAG, "Registering for notifications");
 
@@ -107,7 +109,7 @@ public class MainActivity extends Activity {
             @Override
             public void onSuccess(String s) {
                 setStatus("Device Registered Successfully", true);
-                Log.i(TAG, "Successfully registered for push notifications");
+                Log.i(TAG, "Successfully registered for push notifications, String: " + s);
                 push.listen(notificationListener);
             }
 
@@ -122,7 +124,21 @@ public class MainActivity extends Activity {
         // Attempt to register device using response listener created above
         push.register(registrationResponselistener);
 
-        }
+        MFPPushResponseListener mprl = new MFPPushResponseListener() {
+            @Override
+            public void onSuccess(Object response) {
+                Log.i(TAG, "Device is subscribed to the following: " + response.toString());
+            }
+
+            @Override
+            public void onFailure(MFPPushException exception) {
+                Log.e(TAG, "Error subscribing to tag: " + exception.getErrorMessage());
+            }
+        };
+
+        push.getSubscriptions(mprl);
+
+    }
 
     // If the device has been registered previously, hold push notifications when the app is paused
     @Override
@@ -149,7 +165,7 @@ public class MainActivity extends Activity {
      * @param wasSuccessful Boolean dictates top 2 text view texts
      */
     private void setStatus(final String messageText, boolean wasSuccessful){
-        final TextView errorText = (TextView) findViewById(R.id.error_text);
+        final TextView responseText = (TextView) findViewById(R.id.response_text);
         final TextView topText = (TextView) findViewById(R.id.top_text);
         final TextView bottomText = (TextView) findViewById(R.id.bottom_text);
         final TextView buttonText = (TextView) findViewById(R.id.button_text);
@@ -160,7 +176,7 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
                 buttonText.setClickable(true);
-                errorText.setText(messageText);
+                responseText.setText(messageText);
                 topText.setText(topStatus);
                 bottomText.setText(bottomStatus);
             }
