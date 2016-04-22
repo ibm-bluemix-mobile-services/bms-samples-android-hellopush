@@ -1,6 +1,6 @@
 package com.ibm.hellopush;
 /**
- * Copyright 2015 IBM Corp. All Rights Reserved.
+ * Copyright 2015, 2016 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,36 +106,22 @@ public class MainActivity extends Activity {
         // Creates response listener to handle the response when a device is registered.
         MFPPushResponseListener registrationResponselistener = new MFPPushResponseListener<String>() {
             @Override
-            public void onSuccess(String s) {
+            public void onSuccess(String response) {
                 setStatus("Device Registered Successfully", true);
-                Log.i(TAG, "Successfully registered for push notifications, String: " + s);
+                Log.i(TAG, "Successfully registered for push notifications, String: " + response);
                 push.listen(notificationListener);
             }
 
             @Override
-            public void onFailure(MFPPushException e) {
-                setStatus("Error registering for push notifications: " + e.getErrorMessage(), false);
-                Log.e(TAG, e.getErrorMessage());
+            public void onFailure(MFPPushException exception) {
+                setStatus("Error registering for push notifications: " + exception.getErrorMessage(), false);
+                Log.e(TAG, exception.getErrorMessage());
                 push = null;
             }
         };
 
         // Attempt to register device using response listener created above
         push.register(registrationResponselistener);
-
-        MFPPushResponseListener mprl = new MFPPushResponseListener() {
-            @Override
-            public void onSuccess(Object response) {
-                Log.i(TAG, "Device is subscribed to the following: " + response.toString());
-            }
-
-            @Override
-            public void onFailure(MFPPushException exception) {
-                Log.e(TAG, "Error subscribing to tag: " + exception.getErrorMessage());
-            }
-        };
-
-        push.getSubscriptions(mprl);
 
     }
 
