@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
             // initialize SDK with IBM Bluemix application ID and route
 			// You can find your backendRoute and backendGUID in the Mobile Options section on top of your Bluemix application dashboard
             // TODO: Please replace <APPLICATION_ROUTE> with a valid ApplicationRoute and <APPLICATION_ID> with a valid ApplicationId
-            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>");
+            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>", BMSClient.REGION_US_SOUTH); // Be sure to update your region appropriately if you are not using US_SOUTH
         }
         catch (MalformedURLException mue) {
             this.setStatus("Unable to parse Application Route URL\n Please verify you have entered your Application Route and Id correctly", false);
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
             @Override
             public void onSuccess(String response) {
                 setStatus("Device Registered Successfully", true);
-                Log.i(TAG, "Successfully registered for push notifications, String: " + response);
+                Log.i(TAG, "Successfully registered for push notifications, " + response);
                 push.listen(notificationListener);
             }
 

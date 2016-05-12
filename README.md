@@ -9,7 +9,7 @@ Use the following steps to configure the helloPush sample for Android:
 3. [Configure the front end in the helloPush example](#configure-the-front-end-in-the-hellopush-sample).
 4. [Run the Android app](#run-the-android-app).
 
-### Before you begin 
+### Before you begin
 Before you start, make sure you have the following:
 - A [Bluemix](http://bluemix.net) account.
 - Google Cloud Messaging (GCM) credentials.  To obtain your GCM credentials, follow the instructions at  
@@ -42,7 +42,7 @@ Configure Push Notification Service:
 2. Run a Gradle sync (usually starts automatically) to import the required `core` and `push` SDKs. You can view the **build.gradle** file in the following directory:
 
 	`helloPush\app\build.gradle`
-	
+
 3. Open the `MainActivity.java` class.
 4. In the application `onCreate` method, add the corresponding `ApplicationRoute` and `ApplicationID` (AppGUID) that you saved earlier:
 
@@ -54,18 +54,18 @@ Configure Push Notification Service:
         setContentView(R.layout.activity_main);
 
 		...
-		
+
         try {
             //initialize SDK with IBM Bluemix application ID and route
             //TODO: Please replace <APPLICATION_ROUTE> with a valid ApplicationRoute and <APPLICATION_ID> with a valid ApplicationId
-            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>");
+            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>", BMSClient.REGION_US_SOUTH);
         }
         catch (MalformedURLException mue) {
             ....
         }
 ```
 
-> **Note**: This sample depends on 1.+ version of the Core SDK. This means that the most recent 1.* version will be downloaded automatically. When creating a production applications it is recommended to define the version explicitly (1.0.0 for example) to ensure consistent builds.
+> **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.    
 
 ### Run the Android app
 You can register and receive push notifications on an Android simulator or physical device.
@@ -77,4 +77,3 @@ To send a push notification from the Bluemix dashboard follow [Sending basic pus
 When a push notification is received and the application is in the foreground, an alert is displayed showing the notification's content. The application uses the `ApplicationRoute` and `ApplicationID` specified in the `onCreate` method to connect to the IBM Push Notification Service on Bluemix. The registration status and content is displayed in the logcat console.
 ### License
 This package contains sample code provided in source code form. The samples are licensed under the under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 and may also view the license in the license.txt file within this package. Also see the notices.txt file within this package for additional notices.
-
