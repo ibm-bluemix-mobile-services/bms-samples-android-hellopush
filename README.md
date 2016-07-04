@@ -75,5 +75,42 @@ When you run the application, it displays the **Register for Push** button. When
 To send a push notification from the Bluemix dashboard follow [Sending basic push notifications](https://www.bluemix.net/docs/services/mobilepush/t_send_push_notifications.html)
 
 When a push notification is received and the application is in the foreground, an alert is displayed showing the notification's content. The application uses the `ApplicationRoute` and `ApplicationID` specified in the `onCreate` method to connect to the IBM Push Notification Service on Bluemix. The registration status and content is displayed in the logcat console.
+
+### Send data to push monitoring dashboard using analytics SDK
+
+To use the Analytics SDK add the `dependency`
+
+```
+compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
+name:'analytics',
+version: '1.+',
+ext: 'aar',
+transitive: false
+```
+
+After completing the gradle build follow the below steps ,
+
+1. Import the follwing ,
+
+    ```
+    import com.ibm.mobilefirstplatform.clientsdk.android.analytics.api.*;
+    import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.*;
+    ```
+2. Initialize the Analytics SDK,
+
+    ```
+    Analytics.init(getApplication(), "appName", "apiKey", Analytics.DeviceEvent.LIFECYCLE);
+    Analytics.enable();
+    Logger.storeLogs(true);
+    Logger.setSDKDebugLoggingEnabled(true);
+    Analytics.setUserIdentity("some");
+    ```
+
+3. Send the Analtics data using the following methode call,
+
+    ```
+    Analytics.send();
+    ```
+
 ### License
 This package contains sample code provided in source code form. The samples are licensed under the under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 and may also view the license in the license.txt file within this package. Also see the notices.txt file within this package for additional notices.
