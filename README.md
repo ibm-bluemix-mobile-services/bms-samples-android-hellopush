@@ -92,24 +92,25 @@ After completing the gradle build follow the below steps ,
 
 1. Import the follwing ,
 
-```
-import com.ibm.mobilefirstplatform.clientsdk.android.analytics.api.*;
-import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.*;
-```
+    ```
+    import com.ibm.mobilefirstplatform.clientsdk.android.analytics.api.*;
+    import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.*;
+    ```
 2. Initialize the Analytics SDK,
 
-```
-Analytics.init(getApplication(), "appName", "apiKey", Analytics.DeviceEvent.LIFECYCLE);
-Analytics.enable();
-Logger.storeLogs(true);
-Logger.setSDKDebugLoggingEnabled(true);
-Analytics.setUserIdentity("some");
-```
+    ```
+    Analytics.init(getApplication(), "appName", "apiKey", Analytics.DeviceEvent.LIFECYCLE);
+    Analytics.enable();
+    Logger.storeLogs(true);
+    Logger.setSDKDebugLoggingEnabled(true);
+    Analytics.setUserIdentity("some");
+    ```
+
 3. Send the Analtics data using the following methode call,
 
-```
-Analytics.send();
-```
+    ```
+    Analytics.send();
+    ```
 
 ### License
 This package contains sample code provided in source code form. The samples are licensed under the under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 and may also view the license in the license.txt file within this package. Also see the notices.txt file within this package for additional notices.
