@@ -105,7 +105,6 @@ Logger.storeLogs(true);
 Logger.setSDKDebugLoggingEnabled(true);
 Analytics.setUserIdentity("some");
 ```
-
 3. Send the Analtics data using the following methode call,
 
 ```
