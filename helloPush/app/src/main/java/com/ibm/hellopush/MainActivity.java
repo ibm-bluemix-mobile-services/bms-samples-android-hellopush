@@ -49,9 +49,9 @@ public class MainActivity extends Activity {
 
         try {
             // initialize SDK with IBM Bluemix application ID and route
-			// You can find your backendRoute and backendGUID in the Mobile Options section on top of your Bluemix application dashboard
+            // You can find your backendRoute and backendGUID in the Mobile Options section on top of your Bluemix application dashboard
             // TODO: Please replace <APPLICATION_ROUTE> with a valid ApplicationRoute and <APPLICATION_ID> with a valid ApplicationId
-            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>", BMSClient.REGION_US_SOUTH); // Be sure to update your region appropriately if you are not using US_SOUTH
+            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>", BMSClient.REGION_US_SOUTH);
         }
         catch (MalformedURLException mue) {
             this.setStatus("Unable to parse Application Route URL\n Please verify you have entered your Application Route and Id correctly", false);
@@ -60,8 +60,8 @@ public class MainActivity extends Activity {
 
         // Grabs push client sdk instance
         push = MFPPush.getInstance();
-        // Initialize Push client
-        push.initialize(this);
+        // Initialize Push client, TODO: Please replace <APPLICATION_ID> with a valid ApplicationId
+        push.initialize(this, "<APPLICATION_ID>");
 
         // Create notification listener and enable pop up notification when a message is received
         notificationListener = new MFPPushNotificationListener() {
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 
         TextView buttonText = (TextView) findViewById(R.id.button_text);
         buttonText.setClickable(false);
-		
+
         TextView responseText = (TextView) findViewById(R.id.response_text);
         responseText.setText("Registering for notifications");
 
@@ -113,14 +113,16 @@ public class MainActivity extends Activity {
 
             @Override
             public void onFailure(MFPPushException exception) {
-                setStatus("Error registering for push notifications: " + exception.getErrorMessage(), false);
-                Log.e(TAG, exception.getErrorMessage());
+                String errMessage = " " + exception.getErrorMessage();
+
+                setStatus("Error registering for push notifications:" + errMessage, false);
+                Log.e(TAG, errMessage);
                 push = null;
             }
         };
 
         // Attempt to register device using response listener created above
-        push.register(registrationResponselistener);
+        push.registerDevice(registrationResponselistener);
 
     }
 
