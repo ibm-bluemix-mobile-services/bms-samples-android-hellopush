@@ -45,8 +45,6 @@ Configure Push Notification Service:
 
 3. Open the `MainActivity.java` class.
 4. In the application `onCreate` method, add the corresponding `ApplicationRoute` and `ApplicationID` (AppGUID) that you saved earlier:
-
-
 ```Java
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +63,16 @@ Configure Push Notification Service:
         }
 ```
 
-> **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.    
+> **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK. 
+ 
+Lastly, add the App GUID located in your Push Notifications Dashboard (**Configuration** --> *Mobile Options*) to your push.init function:
+ 
+```Java
+	// Initialize Push client, TODO: Please replace <APPLICATION_ID> with a valid ApplicationId
+        push.initialize(this, "<APPLICATION_ID>");	
+```
+
+> **Note**: Newer versions the Push Notifications service have their own unique AppGUID, so you may be entering different values for each init (Push client sdk vs BMSClient). Ensure you check the specific dashboards' Mobile Options for accurate App GUIDs (Push Notifications and MCA).
 
 ### Run the Android app
 You can register and receive push notifications on an Android simulator or physical device.
