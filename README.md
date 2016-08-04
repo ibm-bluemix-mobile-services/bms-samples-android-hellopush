@@ -68,8 +68,8 @@ Configure Push Notification Service:
 Lastly, add the App GUID located in your Push Notifications Dashboard (**Configuration** --> *Mobile Options*) to your push.init function:
 
 ```Java
-			// TODO: Please replace <APPLICATION_ID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
-			push.initialize(this, "<APPLICATION_ID>", "<CLIENT_SECRET>");
+	// TODO: Please replace <APPLICATION_ID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
+	push.initialize(this, "<APPLICATION_ID>", "<CLIENT_SECRET>");
 ```
 
 > **Note**: Newer versions the Push Notifications service have their own unique AppGUID, so you may be entering different values for each init (Push client sdk vs BMSClient). Ensure you check the specific dashboards' Mobile Options for accurate App GUIDs (Push Notifications and MCA).
