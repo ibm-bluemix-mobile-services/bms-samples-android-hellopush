@@ -60,8 +60,9 @@ public class MainActivity extends Activity {
 
         // Grabs push client sdk instance
         push = MFPPush.getInstance();
-        // Initialize Push client, TODO: Please replace <APPLICATION_ID> with a valid ApplicationId
-        push.initialize(this, "<APPLICATION_ID>");
+        // Initialize Push client
+        // TODO: Please replace <APPLICATION_ID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
+        push.initialize(this, "<APPLICATION_ID>", "<CLIENT_SECRET>");
 
         // Create notification listener and enable pop up notification when a message is received
         notificationListener = new MFPPushNotificationListener() {
@@ -89,6 +90,7 @@ public class MainActivity extends Activity {
      * Called when the register device button is pressed.
      * Attempts to register the device with your push service on Bluemix.
      * If successful, the push client sdk begins listening to the notification listener.
+     * Also includes the example option of UserID association with the registration for very targeted Push notifications.
      *
      * @param view the button pressed
      */
@@ -99,6 +101,7 @@ public class MainActivity extends Activity {
 
         TextView responseText = (TextView) findViewById(R.id.response_text);
         responseText.setText("Registering for notifications");
+
 
         Log.i(TAG, "Registering for notifications");
 
@@ -122,8 +125,8 @@ public class MainActivity extends Activity {
         };
 
         // Attempt to register device using response listener created above
-        push.registerDevice(registrationResponselistener);
-
+        // Include unique sample user Id in order to send targeted push notifications to specific users
+        push.registerDeviceWithUserId("Sample UserID",registrationResponselistener);
     }
 
     // If the device has been registered previously, hold push notifications when the app is paused
