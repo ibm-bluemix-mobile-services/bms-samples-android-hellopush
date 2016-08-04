@@ -63,6 +63,7 @@ Configure Push Notification Service:
         }
 ```
 
+<<<<<<< HEAD
 > **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.
 
 Lastly, add the App GUID located in your Push Notifications Dashboard (**Configuration** --> *Mobile Options*) to your push.init function:
@@ -70,6 +71,15 @@ Lastly, add the App GUID located in your Push Notifications Dashboard (**Configu
 ```Java
 			// TODO: Please replace <APPLICATION_ID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
 			push.initialize(this, "<APPLICATION_ID>", "<CLIENT_SECRET>");
+=======
+> **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK. 
+ 
+Lastly, add the App GUID located in your Push Notifications Dashboard (**Configuration** --> *Mobile Options*) to your push.init function:
+ 
+```Java
+	// Initialize Push client, TODO: Please replace <APPLICATION_ID> with a valid ApplicationId
+        push.initialize(this, "<APPLICATION_ID>");	
+>>>>>>> ff53a31d29426e5ba8dfeb01a5ae900d1df5bb8b
 ```
 
 > **Note**: Newer versions the Push Notifications service have their own unique AppGUID, so you may be entering different values for each init (Push client sdk vs BMSClient). Ensure you check the specific dashboards' Mobile Options for accurate App GUIDs (Push Notifications and MCA).
