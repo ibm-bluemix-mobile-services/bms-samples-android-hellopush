@@ -22,13 +22,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.google.android.gms:play-services:9.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.google.android.gms:play-services:9.4.0'
 
-    // Automatically pulls in version 2.0 core SDK3
+    // Automatically pulls in core SDK
     compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
             name: 'push',
-            version: '2.+',
+            version: '2.0.7',
             ext: 'aar',
             transitive: true
 
