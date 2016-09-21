@@ -4,4 +4,5 @@
     <string name="RegistrationButton">Register Device</string>
     <string name="DefaultLabel">Hello Push</string>
     <string name="hello_world">Hello push!</string>
+    <string name="Registering">Registering for notifications</string>
 </resources>

@@ -29,13 +29,13 @@ Create a mobile backend in the Bluemix dashboard:
 
 1. In the **Boilerplates** section Bluemix catalog, click **MobileFirst Services Starter**.
 2. Enter a name and host for your mobile backend and click **Create**.
-3. Once complete, scroll to the bottom of the page and select **View App Overview**.
-4. From the **App Overview** page, you will see the **Mobile Options** displayed (**Route** and **App GUID**). Be sure to save these values, they will be needed later.
+3. Once complete, navigate to your Push service dashboard and select  **Configure**.
+4. From the **Configure** page, you will see the **Mobile Options** button in the upper right hand corner. Click the button and save the *App Guid* and *Client Secret* values, they will be needed later.
 
 Configure Push Notification Service:
 
-1. In the IBM Push Notifications Dashboard, go to the **Configuration** tab to configure your Push Notification Service.
-2. Scroll down to the **Google Cloud Messaging** section. Enter your GCM project credentials, project number (Sender ID) and API key, and click **save**.
+1. In the **Configuration** tab you will now need to configure your Push Notification Service.
+2. Navigate to the **GCM Push Credentials** section. Enter your GCM project credentials, project number (Sender ID) and API key, and click **save**.
 
 ### Configure the front end in the helloPush sample
 1. In Android Studio, open the helloPush Android project.
@@ -44,35 +44,25 @@ Configure Push Notification Service:
 	`helloPush\app\build.gradle`
 
 3. Open the `MainActivity.java` class.
-4. In the application `onCreate` method, add the corresponding `ApplicationRoute` and `ApplicationID` (AppGUID) that you saved earlier:
+4. In the application `onCreate` method, add the corresponding `App Guid` and `Client Secret` that you saved earlier to your push.init function:
 ```Java
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		...
+        // initialize core SDK with IBM Bluemix application Region, TODO: Update region if not using Bluemix US SOUTH
+        BMSClient.getInstance().initialize(this, BMSClient.REGION_US_SOUTH);
 
-        try {
-            //initialize SDK with IBM Bluemix application ID and route
-            //TODO: Please replace <APPLICATION_ROUTE> with a valid ApplicationRoute and <APPLICATION_ID> with a valid ApplicationId
-            BMSClient.getInstance().initialize(this, "<APPLICATION_ROUTE>", "<APPLICATION_ID>", BMSClient.REGION_US_SOUTH);
-        }
-        catch (MalformedURLException mue) {
-            ....
-        }
+        // Grabs push client sdk instance
+        push = MFPPush.getInstance();
+        // Initialize Push client
+        // You can find your App Guid and Client Secret by navigating to the Configure section of your Push dashboard, click Mobile Options (Upper Right Hand Corner)
+        // TODO: Please replace <APP_GUID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
+        push.initialize(this, "<APP_GUID>", "<CLIENT_SECRET>");
 ```
 
 > **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.
-
-Lastly, add the App GUID located in your Push Notifications Dashboard (**Configuration** --> *Mobile Options*) to your push.init function:
-
-```Java
-	// TODO: Please replace <APPLICATION_ID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
-	push.initialize(this, "<APPLICATION_ID>", "<CLIENT_SECRET>");
-```
-
-> **Note**: Newer versions the Push Notifications service have their own unique AppGUID, so you may be entering different values for each init (Push client sdk vs BMSClient). Ensure you check the specific dashboards' Mobile Options for accurate App GUIDs (Push Notifications and MCA).
 
 ### Run the Android app
 You can register and receive push notifications on an Android simulator or physical device.
@@ -81,6 +71,6 @@ When you run the application, it displays the **Register for Push** button. When
 
 To send a push notification from the Bluemix dashboard follow [Sending basic push notifications](https://www.bluemix.net/docs/services/mobilepush/t_send_push_notifications.html)
 
-When a push notification is received and the application is in the foreground, an alert is displayed showing the notification's content. The application uses the `ApplicationRoute` and `ApplicationID` specified in the `onCreate` method to connect to the IBM Push Notification Service on Bluemix. The registration status and content is displayed in the logcat console.
+When a push notification is received and the application is in the foreground, an alert is displayed showing the notification's content. The application uses the `App Guid` and `Client Secret` specified in the `onCreate` method to connect to the IBM Push Notification Service on Bluemix and associate a unigue User Id. The registration status and content is displayed in the logcat console and on screen.
 ### License
 This package contains sample code provided in source code form. The samples are licensed under the under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 and may also view the license in the license.txt file within this package. Also see the notices.txt file within this package for additional notices.
