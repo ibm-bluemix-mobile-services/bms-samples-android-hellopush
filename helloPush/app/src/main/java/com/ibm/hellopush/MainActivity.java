@@ -120,27 +120,16 @@ public class MainActivity extends Activity {
             @Override
             public void onFailure(MFPPushException exception) {
                 String errLog = "Error registering for push notifications: ";
-                String errMessage = "";
+                String errMessage = exception.getErrorMessage();
                 int statusCode = exception.getStatusCode();
 
-                // Convert error message to JSON to grab message response, if authorized. 401 response does not return an error message
-                if(statusCode != 401) {
-                    try {
-                        JSONObject exceptionJSON = new JSONObject(exception.getErrorMessage());
-                        errMessage = exceptionJSON.getString("message");
-                        Log.i(TAG, exceptionJSON.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
                 // Set error log based on response code and error message
-                if(statusCode == 404 && errMessage.contains("Push GCM Configuration")){
+                if(statusCode == 401){
+                    errLog += "Cannot authenticate successfully with Bluemix Push instance, ensure your CLIENT SECRET was set correctly.";
+                } else if(statusCode == 404 && errMessage.contains("Push GCM Configuration")){
                     errLog += "Push GCM Configuration does not exist, ensure you have configured GCM Push credentials on your Bluemix Push dashboard correctly.";
                 } else if(statusCode == 404 && errMessage.contains("PushApplication")){
                     errLog += "Cannot find Bluemix Push instance, ensure your APPLICATION ID was set correctly and your phone can successfully connect to the internet.";
-                } else if(statusCode == 401){
-                    errLog += "Cannot authenticate successfully with Bluemix Push instance, ensure your CLIENT SECRET was set correctly.";
                 } else if(statusCode >= 500){
                     errLog += "Bluemix and/or your Push instance seem to be having problems, please try again later.";
                 }
