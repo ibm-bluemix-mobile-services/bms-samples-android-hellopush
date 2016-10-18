@@ -28,7 +28,7 @@ dependencies {
     // Automatically pulls in core SDK
     compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
             name: 'push',
-            version: '2.+',
+            version: '2.0.8',
             ext: 'aar',
             transitive: true
 
