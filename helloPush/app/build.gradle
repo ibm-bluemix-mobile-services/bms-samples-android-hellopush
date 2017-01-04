@@ -28,8 +28,9 @@ dependencies {
     // Automatically pulls in core SDK
     compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
             name: 'push',
-            version: '2.+',
+            version: '3.+',
             ext: 'aar',
             transitive: true
 
 }
+apply plugin: 'com.google.gms.google-services'
