@@ -39,12 +39,13 @@ Configure Push Notification Service:
 
 ### Configure the front end in the helloPush sample
 1. In Android Studio, open the helloPush Android project.
-2. Run a Gradle sync (usually starts automatically) to import the required `core` and `push` SDKs. You can view the **build.gradle** file in the following directory:
+2. Download Firebase google-services.json for android, and place them in the root folder of the project.
+3. Run a Gradle sync (usually starts automatically) to import the required `core` and `push` SDKs. You can view the **build.gradle** file in the following directory:
 
 	`helloPush\app\build.gradle`
 
-3. Open the `MainActivity.java` class.
-4. In the application `onCreate` method, add the corresponding `App Guid` and `Client Secret` that you saved earlier to your push.init function:
+4. Open the `MainActivity.java` class.
+5. In the application `onCreate` method, add the corresponding `App Guid` and `Client Secret` that you saved earlier to your push.init function:
 ```Java
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
