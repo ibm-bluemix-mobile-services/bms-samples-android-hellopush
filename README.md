@@ -73,5 +73,13 @@ When you run the application, it displays the **Register for Push** button. When
 To send a push notification from the Bluemix dashboard follow [Sending basic push notifications](https://www.bluemix.net/docs/services/mobilepush/t_send_push_notifications.html)
 
 When a push notification is received and the application is in the foreground, an alert is displayed showing the notification's content. The application uses the `App Guid` and `Client Secret` specified in the `onCreate` method to connect to the IBM Push Notification Service on Bluemix and associate a unigue User Id. The registration status and content is displayed in the logcat console and on screen.
+
+### Samples & videos
+
+* Please visit for samples - [Github Sample](https://github.com/ibm-bluemix-mobile-services/bms-samples-android-hellopush)
+
+* Video Tutorials Available here - [Bluemix Push Notifications](https://www.youtube.com/channel/UCRr2Wou-z91fD6QOYtZiHGA)
+
+
 ### License
 This package contains sample code provided in source code form. The samples are licensed under the under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 and may also view the license in the license.txt file within this package. Also see the notices.txt file within this package for additional notices.
