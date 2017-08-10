@@ -71,56 +71,6 @@ Before you can run the helloPush application, you must set up an app on Bluemix.
 > **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.
 
 
-### Register http End point
-
-To register an http endpoint device registration follow this way,
-
-```
-  String appId = "Push service app ID";
-  String clientSecret = "Push service client secret";
-  String hostName = "http://imfpush.ng.bluemix.net"; // Push host
-  String resourceURL = hostName + "/imfpush/v1/apps/" + appId + "/devices";
-  int timeout = 500; // milliseconds
-
-  Request request = new Request(resourceURL, Request.POST, timeout);
-  request.addHeader("Content-Type", "application/json");
-  request.addHeader("clientSecret", clientSecret);
-
-  AuthorizationManager authorizationManager = BMSClient.getInstance().getAuthorizationManager();
-  String regId = authorizationManager.getDeviceIdentity().getId();
-
-  String slackId = "XXXXXX";
-  String emailId = "XXXXXX@myweb.com";
-  String twitterId = "XXXX_tweet";
-  String mobile = "+11111111";
-  String plat = "_HTTP";
-  JSONObject device = new JSONObject();
-  JSONObject attribute = new JSONObject();
-  try {
-
-
-      attribute.put("email", emailId);
-      attribute.put("slack", slackId);
-      attribute.put("twitter", twitterId);
-      attribute.put("mobileNumber", mobile);
-
-      device.put("deviceId", (regId + plat));
-      device.put("userId", "your userID");
-      device.put("platform", "HTTP");
-      device.put("attributes", attribute);
-
-  } catch (JSONException e) {
-      throw new RuntimeException(e);
-  }
-
-  ResponseListener responseListener = new MyResponseListener();
-
-  request.send(getApplicationContext(), device.toString(), responseListener);
-
-```
-
-For `MyResponseListener()` class check the [BMSCore Doc](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-android-core#make-network-requests)
-
 
 
 ### Run the Android app

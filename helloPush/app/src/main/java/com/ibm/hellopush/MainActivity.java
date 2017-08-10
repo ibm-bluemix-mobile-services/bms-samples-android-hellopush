@@ -80,58 +80,6 @@ public class MainActivity extends Activity {
 
     }
 
-    public void registerHTTPDevice(View view) {
-
-        TextView responseText = (TextView) findViewById(R.id.response_text);
-        responseText.setText(R.string.Registering);
-        Log.i(TAG, "Registering HTTP devices");
-
-
-        String appId = "Push service app ID";
-        String clientSecret = "Push service client secret";
-        String hostName = "http://imfpush.ng.bluemix.net"; // your host
-
-
-
-        String resourceURL = hostName + "/imfpush/v1/apps/" + appId + "/devices";
-        int timeout = 500; // milliseconds
-        Request request = new Request(resourceURL, Request.POST, timeout);
-
-        request.addHeader("Content-Type", "application/json");
-        request.addHeader("clientSecret", clientSecret);
-
-        AuthorizationManager authorizationManager = BMSClient.getInstance().getAuthorizationManager();
-        String regId = authorizationManager.getDeviceIdentity().getId();
-
-        String slackId = "XXXXXX";
-        String emailId = "XXXXXX@myweb.com";
-        String twitterId = "XXXX_tweet";
-        String mobile = "+11111111";
-        String plat = "_HTTP";
-        JSONObject device = new JSONObject();
-        JSONObject attribute = new JSONObject();
-        try {
-
-
-            attribute.put("email", emailId);
-            attribute.put("slack", slackId);
-            attribute.put("twitter", twitterId);
-            attribute.put("mobileNumber", mobile);
-
-            device.put("deviceId", (regId + plat));
-            device.put("userId", "your userID");
-            device.put("platform", "HTTP");
-            device.put("attributes", attribute);
-
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-
-        ResponseListener responseListener = new MyResponseListener();
-
-        request.send(getApplicationContext(), device.toString(), responseListener);
-
-    }
 
     /**
      * Called when the register device button is pressed.

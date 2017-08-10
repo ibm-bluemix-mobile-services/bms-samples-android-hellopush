@@ -83,17 +83,4 @@ limitations under the License.
         android:textColor="@color/black"
         android:textAlignment="gravity"
         android:gravity="center_vertical|center_horizontal" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button_text"
-        android:layout_alignLeft="@+id/top_text"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/button_text"
-        android:layout_alignStart="@+id/top_text"
-        android:layout_marginBottom="25dp"
-        android:onClick="registerHTTPDevice"
-        android:text="Register HTTP" />
 </RelativeLayout>
