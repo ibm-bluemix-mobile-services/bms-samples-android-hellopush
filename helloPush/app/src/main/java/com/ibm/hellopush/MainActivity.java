@@ -24,11 +24,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Request;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPush;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushException;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushResponseListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushNotificationListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPSimplePushNotification;
+import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthorizationManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,6 +79,7 @@ public class MainActivity extends Activity {
         };
 
     }
+
 
     /**
      * Called when the register device button is pressed.
