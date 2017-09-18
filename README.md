@@ -46,8 +46,8 @@ Before you can run the helloPush application, you must set up an app on Bluemix.
 ### Configure the front end in the helloPush sample
 
 1. In Android Studio, open the helloPush Android project.
-2. Download Firebase `google-services.json` for android, and place them in the root folder of the project. Follow this [Doc]
-(https://console.bluemix.net/docs/services/mobilepush/push_step_1.html#push_step_1).
+2. Download Firebase `google-services.json` for android, and place them in the root folder of the project. Follow this (Doc)
+[https://console.bluemix.net/docs/services/mobilepush/push_step_1.html#push_step_1].
 3. Run a Gradle sync (usually starts automatically) to import the required `Core` and `Push` SDKs. You can view the **build.gradle** file in the following directory:
 
 	`helloPush\app\build.gradle`
