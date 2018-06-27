@@ -37,11 +37,12 @@ Before you can run the helloPush application, you must set up an app on Bluemix.
 3. Navigate to the **FCM Push Credentials** section. Enter your GCM project credentials, project number (Sender ID) and API key, and click **save**.
 
 
-### Create and the front end in the helloPush sample
+### Configure the helloPush sample
 
 1. In Android Studio, open the helloPush Android project.
 2. Download Firebase google-services.json for android, and place them in the root folder of the project.
-3. Run a Gradle sync (usually starts automatically) to import the required `core` and `push` SDKs. You can view the **build.gradle** file in the following directory:
+3. Run a Gradle sync (usually starts automatically) to import the required `core` and `push` SDKs. You can 
+view the **build.gradle** file in the following directory:
 
 	`helloPush\app\build.gradle`
 
@@ -62,7 +63,7 @@ Before you can run the helloPush application, you must set up an app on Bluemix.
         push.initialize(this, "<APP_GUID>", "<CLIENT_SECRET>");
 ```
 
-> **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.
+> **Note**: If your IBM Cloud Push Service is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.
 
 ### Other features
 
