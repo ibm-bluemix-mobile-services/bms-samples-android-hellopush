@@ -30,13 +30,14 @@ Clone the sample from GitHub using the following command:
 
 Before you can run the helloPush application, you must set up an app on Bluemix.  The following procedure shows you how to create a IBM Cloud push notifications Services.
 
-##### Configure Push Notification Service:
+##### Create and Configure Push Notification Service:
 
-1. In the **Configuration** tab you will now need to configure your Push Notification Service.
-2. Navigate to the **GCM Push Credentials** section. Enter your GCM project credentials, project number (Sender ID) and API key, and click **save**.
+1. Go to Catalog page of IBM Cloud and create Puhs notifications service instance
+2. In the **Configuration** tab you will now need to configure your Push Notification Service.
+3. Navigate to the **FCM Push Credentials** section. Enter your GCM project credentials, project number (Sender ID) and API key, and click **save**.
 
 
-### Configure the front end in the helloPush sample
+### Create and the front end in the helloPush sample
 
 1. In Android Studio, open the helloPush Android project.
 2. Download Firebase google-services.json for android, and place them in the root folder of the project.
