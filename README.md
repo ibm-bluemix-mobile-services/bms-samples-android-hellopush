@@ -5,8 +5,8 @@ This Android helloPush sample contains an Android project that you can use to le
 Use the following steps to configure the helloPush sample for Android:
 
 1. [Download the helloPush sample](#download-the-hellopush-sample).
-2. [Push Notification Service](#push-notification-service).
-3. [Configure the helloPush sample](#configure-the-helloPush-sample).
+2. [Create and Configure Push Notification Service](#create-and-configure-push-notification-service).
+3. [Configure the helloPush sample](#configure-the-hellopush-sample).
 4. [Run the Android app](#run-the-android-app).
 
 
