@@ -26,16 +26,9 @@ Clone the sample from GitHub using the following command:
 `git clone https://github.com/ibm-bluemix-mobile-services/bms-samples-android-hellopush`
 
 
-### Configure the mobile back end for your helloPush application
+### Create and configure the mobile back end for your helloPush application
 
 Before you can run the helloPush application, you must set up an app on Bluemix.  The following procedure shows you how to create a IBM Cloud push notifications Services.
-
-##### Create a mobile backend in the Bluemix dashboard:
-
-1. In the **Boilerplates** section Bluemix catalog, click **MobileFirst Services Starter**.
-2. Enter a name and host for your mobile backend and click **Create**.
-3. Once complete, navigate to your Push service dashboard and select  **Configure**.
-4. From the **Configure** page, you will see the **Mobile Options** button in the upper right hand corner. Click the button and save the *App Guid* and *Client Secret* values, they will be needed later.
 
 ##### Configure Push Notification Service:
 
