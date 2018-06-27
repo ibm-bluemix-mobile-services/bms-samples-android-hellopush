@@ -70,6 +70,12 @@ Before you can run the helloPush application, you must set up an app on Bluemix.
 
 > **Note**: If your Bluemix app is **not** hosted in US_SOUTH, be sure to update the region parameter appropriately: BMSClient.REGION_SYDNEY or BMSClient.REGION_UK.
 
+### Other features
+
+   * getTags()
+   * getSubscriptions()
+   * subscribeToTag()
+   * unsubscribeFromTags()
 
 
 
