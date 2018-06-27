@@ -28,6 +28,9 @@ import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Request;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPush;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushException;
+import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushNotificationButton;
+import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushNotificationCategory;
+import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushNotificationOptions;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushResponseListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPPushNotificationListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.push.api.MFPSimplePushNotification;
@@ -35,6 +38,9 @@ import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthorizationM
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -57,6 +63,55 @@ public class MainActivity extends Activity {
         // You can find your App Guid and Client Secret by navigating to the Configure section of your Push dashboard, click Mobile Options (Upper Right Hand Corner)
         // TODO: Please replace <APP_GUID> and <CLIENT_SECRET> with a valid App GUID and Client Secret from the Push dashboard Mobile Options
         push.initialize(this, "<APP_GUID>", "<CLIENT_SECRET>");
+
+
+        //TODO: Actionable Notifications
+
+       /* MFPPushNotificationOptions options = new MFPPushNotificationOptions();
+
+        MFPPushNotificationButton firstButton = new MFPPushNotificationButton.Builder("Accept Button")
+                .setIcon("check_circle_icon")
+                .setLabel("Accept")
+                .build();
+
+        MFPPushNotificationButton secondButton = new MFPPushNotificationButton.Builder("Decline Button")
+                .setIcon("extension_circle_icon")
+                .setLabel("Decline")
+                .build();
+
+        MFPPushNotificationButton secondButton1 = new MFPPushNotificationButton.Builder("Decline Button2")
+                .setIcon("extension_circle_icon")
+                .setLabel("Decline2")
+                .build();
+
+        List<MFPPushNotificationButton> getButtons =  new ArrayList<MFPPushNotificationButton>();
+        getButtons.add(firstButton);
+        getButtons.add(secondButton);
+        getButtons.add(secondButton1);
+
+        List<MFPPushNotificationButton> getButtons1 =  new ArrayList<MFPPushNotificationButton>();
+        getButtons1.add(firstButton);
+        getButtons1.add(secondButton);
+
+        List<MFPPushNotificationButton> getButtons2 =  new ArrayList<MFPPushNotificationButton>();
+        getButtons2.add(firstButton);
+
+        MFPPushNotificationCategory category = new MFPPushNotificationCategory.Builder("First_Button_Group1").setButtons(getButtons).build();
+        MFPPushNotificationCategory category1 = new MFPPushNotificationCategory.Builder("First_Button_Group2").setButtons(getButtons1).build();
+        MFPPushNotificationCategory category2 = new MFPPushNotificationCategory.Builder("First_Button_Group3").setButtons(getButtons2).build();
+
+        List<MFPPushNotificationCategory> categoryList =  new ArrayList<MFPPushNotificationCategory>();
+        categoryList.add(category);
+        categoryList.add(category1);
+        categoryList.add(category2);
+
+        options.setInteractiveNotificationCategories(categoryList);
+        */
+
+
+        //TODO: Set custom DeviceId
+        //options.setDeviceid("your_device_id");
+
 
         // Create notification listener and enable pop up notification when a message is received
         notificationListener = new MFPPushNotificationListener() {
@@ -147,9 +202,94 @@ public class MainActivity extends Activity {
 
         // Attempt to register device using response listener created above
         // Include unique sample user Id instead of Sample UserId in order to send targeted push notifications to specific users
+        //TODO : Registartion with UserId
         push.registerDeviceWithUserId("Sample UserID",registrationResponselistener);
+
+        //TODO: Registartion without UserId
+        //push.registerDevice(registrationResponselistener);
     }
 
+
+    //TODO: Call this method to get all the Tags
+
+    /**
+     * Call for getting the tags.
+     */
+    public void getTags() {
+
+        push.getTags(new MFPPushResponseListener<List<String>>() {
+            @Override
+            public void onSuccess(List<String> tags) {
+                setStatus("Retrieved Tags : " + tags, true);
+            }
+
+            @Override
+            public void onFailure(MFPPushException ex) {
+                setStatus("Error getting tags..." + ex.getMessage(), false);
+            }
+        });
+    }
+
+    //TODO: Call this method to get all the subscribed tags
+    /**
+     * Call for getting the subscribed tags.
+     */
+    public void getSubscriptions() {
+
+        push.getSubscriptions(new MFPPushResponseListener<List<String>>() {
+            @Override
+            public void onSuccess(List<String> tags) {
+                setStatus("Retrieved subscriptions : " + tags, true);
+            }
+
+            @Override
+            public void onFailure(MFPPushException ex) {
+                setStatus("Error getting subscriptions.. "
+                        + ex.getMessage(), false);
+            }
+        });
+    }
+
+    //TODO: Call this method for subscribing to a tag
+    /**
+     * Call for subscribing to a tag.
+     */
+    public void subscribeToTag(final String tagName) {
+
+        push.subscribe(tagName,new MFPPushResponseListener<String>() {
+                    @Override
+                    public void onFailure(MFPPushException ex) {
+                        setStatus("Error subscribing to " + tagName + ex.getMessage(), false);
+                    }
+
+                    @Override
+                    public void onSuccess(String arg0) {
+                        setStatus("Succesfully Subscribed to: "+ tagName, true);
+                    }
+                });
+    }
+
+    //TODO: Call this method for Unsubscribing to a tag
+    /**
+     * Call for Unsubscribing to a tag.
+     */
+    void unsubscribeFromTags(final String tag) {
+        push.unsubscribe(tag, new MFPPushResponseListener<String>() {
+
+            @Override
+            public void onSuccess(String s) {
+                setStatus("Successfully unsubscribed from tag . " + tag, true);
+            }
+
+            @Override
+            public void onFailure(MFPPushException e) {
+                setStatus("Error while unsubscribing from tags. " + e.getMessage(), false);
+            }
+
+        });
+    }
+
+    //TODO: Call this
     // If the device has been registered previously, hold push notifications when the app is paused
     @Override
     protected void onPause() {
